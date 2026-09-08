@@ -115,8 +115,8 @@ ls -l /dev/dri
 ## 文件说明
 
 ```text
-GPU_DRIVER_FIX.md              FD690 用户态故障的分析与修复记录
-TOUCH_LOW_FPS_FIX.md           Himax 低刷新率触屏故障的分析与修复记录
+docs/GPU_DRIVER_FIX.md         FD690 用户态故障的分析与修复记录
+docs/TOUCH_LOW_FPS_FIX.md      Himax 低刷新率触屏故障的分析与修复记录
 scripts/fix-gpu-userspace.sh   GPU 诊断、修复和回滚脚本
 scripts/fix-touch-low-fps.sh   触屏诊断、修复和回滚脚本
 LICENSE                        MIT License
