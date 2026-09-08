@@ -82,16 +82,17 @@ sudo ./scripts/fix-touch-low-fps.sh --fix
 
 ## 日志与配置
 
-默认日志为 `~/gaokun-kernel-build/build.log`，可通过 `GPU_FIX_LOG` 覆盖；备份根目录可通过 `GPU_FIX_BACKUP_ROOT` 覆盖：
+默认日志为 `~/gaokun-kernel-build/build.log`。GPU 脚本使用 `GPU_FIX_LOG` 和 `GPU_FIX_BACKUP_ROOT`，触屏脚本使用 `TOUCH_FIX_LOG` 和 `TOUCH_FIX_BACKUP_ROOT`；两者默认共享 `/var/backups/gpu-driver-fix/`：
 
 ```bash
 GPU_FIX_LOG=/tmp/gpu-driver-fix.log ./scripts/fix-gpu-userspace.sh --check
 sudo GPU_FIX_BACKUP_ROOT=/var/backups/my-gpu-fix ./scripts/fix-gpu-userspace.sh --fix
+sudo TOUCH_FIX_LOG=/tmp/touch-fix.log ./scripts/fix-touch-low-fps.sh --fix
 ```
 
 ## 适用范围与限制
 
-本工具只处理“内核已支持 GPU，但用户态被错误环境变量覆盖”的情况。脚本无法确认 Adreno/Freedreno，或内核日志显示 GPU probe、GMU、固件初始化失败时，会拒绝修改。此时收集以下信息，交给设备内核适配项目或 Linux/Mesa 上游：
+GPU 脚本只处理“内核已支持 GPU，但用户态被错误环境变量覆盖”的情况；触屏脚本只处理已暴露 Himax HX83121A 算法 sysfs 节点的设备。脚本无法确认目标硬件或发现内核初始化失败时，会拒绝修改。此时收集以下信息，交给设备内核适配项目或 Linux/Mesa 上游：
 
 ```bash
 uname -a
